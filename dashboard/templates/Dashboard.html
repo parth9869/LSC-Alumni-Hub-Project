@@ -1,0 +1,349 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LSC Alumni Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{% static 'img/logo1.jpg' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Stylesheet -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-custom  shadow sticky-top">
+        <a class="navbar-brand" href="{% url 'dashboard' ">
+            <!--logo -->
+            <img src="{% static 'img/logo1.jpg' %}" alt="logo" class="rounded-circle img-fluid" width="70px">
+        </a>
+        <!--respoinsive toggal button for mobile view-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="border-color: #f56e76;">
+            <i class="fa fa-bars fa-lg" id="navToggal"></i>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="navbar-nav container-fluid justify-content-end nav-item ">
+
+
+                <div class="nav-item"> <span class=" MX-1">Welcome, {{user.firstname}} </spanp>
+                </div>
+                <!--dashboard navebar item-->
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link mx-1 active"> Dashboard</a>
+
+                <!--jobs dropdown menu -->
+                <div class="dropdown mx-1">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Jobs
+                    </a>
+
+                    <!--jobs dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'jobhome' %}">Search Jobs</a>
+                        <a class="dropdown-item" href="{% url 'postjob' %}">Post a Job</a>
+
+                    </div>
+                </div>
+
+               
+
+                <!--House dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Rental
+                    </a>
+                    <!--House dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Search rental Home/Room</a>
+                        <a class="dropdown-item" href="#">Rent a Home/Room</a>
+
+                    </div>
+                </div>
+
+                <!--userProfile dropdown menu -->
+                <div class="dropdown mx-1 pr-2 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/defaultprofile.jpg' %}" class="rounded-circle img-fluid" width="30px"
+                            alt="profile picture">
+                    </a>
+
+                    <!--userProfile dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        </div>
+    </nav>
+    <!--navebar end-->
+
+
+
+
+    <!--explore by category-->
+    <div class="container-fluid">
+    <div class="body__main ">
+        <!-- Sidebar Starts -->
+        <div class="col-md-3">
+        <div class="sidebar">
+            <div class="sidebar__top">
+                <img src="https://source.unsplash.com/YpDkIh137ws" alt="" />
+                <i class="material-icons sidebar__topAvatar " > account_circle </i>
+                <h2>{{user.firstname}} {{user.lastname}}</h2>
+                <h4>{{user.email}}</h4>
+            </div>
+
+            <div class="sidebar__stats">
+                <div class="sidebar__stat">
+                    <p>Your Posts</p>
+                    <p class="sidebar__statNumber">24</p>
+                </div>
+                <div class="sidebar__stat">
+                    <p>Your Favourites</p>
+                    <p class="sidebar__statNumber">40</p>
+                </div>
+            </div>
+
+            <div class="sidebar__bottom">
+                <p>Your Recent Posts</p>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash"><i id="sidebar__text" class="material-icons"> home </i></span>
+                    <p id="sidebar__text">Room for sharing</p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash"><i id="sidebar__text" class="material-icons"> business_center
+                        </i></span>
+                    <p id="sidebar__text">Business Analyst job </p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash"><i id="sidebar__text" class="material-icons"> home </i></span>
+                    <p id="sidebar__text">House on rent</p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash"><i id="sidebar__text" class="material-icons"> business_center
+                        </i></span>
+                    <p id="sidebar__text">Software developer job </p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash">#</span>
+                    <p>softwareengineering</p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash">#</span>
+                    <p>design</p>
+                </div>
+                <div class="sidebar__recentItem">
+                    <span class="sidebar__hash">#</span>
+                    <p>developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Sidebar Ends -->
+
+        <!-- Feed Starts -->
+        <div class="col-md-9">
+        <div class="feed">
+          
+            <div class="feed__inputContainer mb-4 p-3  align-middle">
+                <div class="feed__input mb-2 pt-1  rounded-pill ">
+                    <i class="material-icons ml-2 mr-1 pt-2"> create </i>
+                    <form >
+                        <input type="text " class="form-control mr-2" placeholder="What's on your mind?"/>
+                        <button type="submit" class="btn btn-dark border-1 ml-1 mr-3 d-none">Post</button>
+                    </form>
+                </div>
+
+                <div class="feed__inputOptions">
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: #70b5f9" class="material-icons mr-1"> insert_photo </i>
+                        <h6 class="pt-1">Photo</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: #e7a33e" class="material-icons mr-1"> subscriptions </i>
+                        <h6 class="pt-1">Video</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: #c0cbcd" class="material-icons mr-1"> event_note </i>
+                        <h6 class="pt-1">Event</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: #7fc15e" class="material-icons mr-1"> calendar_view_day </i>
+                        <h6 class="pt-1">Write Article</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post Starts -->
+            <div class="post">
+                <div class="post__header">
+                    <i class="material-icons sidebar__topAvatar"> account_circle </i>
+                    <div class="post__info">
+                        <h2>Meet patel</h2>
+                        
+                    </div>
+                </div>
+
+                <div class="post__body">
+                    <p >I have room available ......... <br>
+                        contect Me on : +1 222-333-3333<br>
+                        Thank you..!!!</p>
+                </div>
+
+                <div class="feed__inputOptions">
+                    <div class="inputOption d-flex text-center">
+                       <span> <i  style="color: gray" class="material-icons mr-1"> thumb_up </i></span>
+                        <h6 class="pt-1">Like</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> comment </i>
+                        <h6 class="pt-1">Comment</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> share </i>
+                        <h6 class="pt-1">Share</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> send </i>
+                        <h6 class="pt-1">Send</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Post Ends -->
+
+            <!-- Post Starts -->
+            <div class="post">
+                <div class="post__header">
+                    <i class="material-icons sidebar__topAvatar"> account_circle </i>
+                    <div class="post__info">
+                        <h2>Rahul  Gupta</h2>
+                        
+                    </div>
+                </div>
+
+                <div class="post__body">
+                    <p > Code design is the next frontier in sustainability 
+                        Sustainable coding involves designing and building applications to be cloud-native and to take full advantage of on-demand computing, higher asset utilization rates, and dynamic allocation of computing resources. It’s about reducing the emissions that an application is responsible for, either by using less electricity or less physical hardware, or finding lower carbon sources of electricity for processing.   
+                        <br> learn more click on link below: <br> <a>http://xyz.com</a>
+                    </p>
+                </div>
+
+                <div class="feed__inputOptions">
+                    <div class="inputOption d-flex text-center">
+                       <span> <i  style="color: gray" class="material-icons mr-1"> thumb_up </i></span>
+                        <h6 class="pt-1">Like</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> comment </i>
+                        <h6 class="pt-1">Comment</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> share </i>
+                        <h6 class="pt-1">Share</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> send </i>
+                        <h6 class="pt-1">Send</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Post Ends -->
+
+            <!-- Post Starts -->
+            <div class="post">
+                <div class="post__header">
+                    <i class="material-icons sidebar__topAvatar"> account_circle </i>
+                    <div class="post__info">
+                        <h2>Meet patel</h2>
+                        
+                    </div>
+                </div>
+
+                <div class="post__body">
+                    <p >I have room available ......... <br>
+                        contect Me on : +1 222-333-3333<br>
+                        Thank you..!!!</p>
+                </div>
+
+                <div class="feed__inputOptions">
+                    <div class="inputOption d-flex text-center">
+                       <span> <i  style="color: gray" class="material-icons mr-1"> thumb_up </i></span>
+                        <h6 class="pt-1">Like</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> comment </i>
+                        <h6 class="pt-1">Comment</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> share </i>
+                        <h6 class="pt-1">Share</h6>
+                    </div>
+                    <div class="inputOption d-flex text-center">
+                        <i style="color: gray" class="material-icons mr-1"> send </i>
+                        <h6 class="pt-1">Send</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Post Ends -->
+
+
+           
+        </div>
+    </div>
+       </div>
+    </div>
+    <!-- Main Body Ends -->
+</body>
+
+</html>

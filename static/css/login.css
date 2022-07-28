@@ -1,0 +1,33 @@
+body{
+    background-color: #fafafa;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    
+   
+}
+
+
+form{
+    color: black;
+}
+.btn-custom{
+    background-color: #f56e76;
+    color:white;
+    font-weight: bold;
+}
+.btn-custom:hover{
+    background-color: #3accfc;
+    
+}
+
+#backDiv{
+        background-image: url('../img/background.jpeg');
+        height: 200px;
+        z-index: 0;
+}
+
+.error1{
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: smaller;
+}

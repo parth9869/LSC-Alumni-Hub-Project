@@ -1,0 +1,286 @@
+{% load static %}
+{% load customtag %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LSC Alumni Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{% static 'img/logo1.jpg' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+   
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Stylesheet -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/jobSearch.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jobs.js'%}"></script>
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-custom  shadow sticky-top">
+        <a class="navbar-brand" href="#">
+            <!--logo -->
+            <img src="{% static 'img/logo1.jpg' %}" alt="logo" class="rounded-circle img-fluid" width="70px">
+        </a>
+        <!--respoinsive toggal button for mobile view-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="border-color: #f56e76;">
+            <i class="fa fa-bars fa-lg" id="navToggal"></i>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="navbar-nav container-fluid justify-content-end nav-item ">
+                <div class="nav-item"> <span class=" MX-1">Welcome, {{user.firstname}} </spanp></div>
+                <!--dashboard navebar item-->
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link mx-1 ">Dashboard</a>
+
+                <!--jobs dropdown menu -->
+                <div class="dropdown mx-1 nav-item active">
+                    <a class="dropdown-toggle nav-item active" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Jobs
+                    </a>
+
+                    <!--jobs dropdown menu items-->
+                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item " href="{% url 'jobhome' %}">Search Jobs</a>
+                        <a class="dropdown-item" href="{% url 'postjob' %}">Post a Job</a>
+
+                    </div>
+                </div>
+
+              
+                
+
+                <!--House dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Rental
+                    </a>
+                    <!--House dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Search Rental Home/Room</a>
+                        <a class="dropdown-item" href="#">Rent a Home/Room</a>
+
+                    </div>
+                </div>
+
+                <!--userProfile dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/defaultprofile.jpg' %}" class="rounded-circle img-fluid" width="30px"
+                            alt="profile picture">
+                    </a>
+
+                    <!--userProfile dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>    
+                       
+
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        </div>
+    </nav>
+    <!--navebar end-->
+
+
+    <!-- search start-->
+    
+    <div class="container align-items-center">
+        <div class="container-fluid  wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;" id="search">
+            
+            <div class="container">
+                <form method="GET" action="{% url 'job_searchbtn' %}" name="searchform" onsubmit="return formValidation()"></form>
+                <div class="row g-2">
+                   
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            
+                            <div class="col-md-4">
+                                <input type="text" class="form-control border-0" placeholder="Title" name="title" id="formTitle"/>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" id="category" name="category" id="formCategory">
+                                    <option value="">-----</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Customer Service" >Customer Service</option>
+                                    <option value="Human Resource">Human Resource</option>
+                                    <option value="Project Management">Project Management</option>
+                                    <option value="Business Development">Business Development</option>
+                                    <option value="Sales And Communication">Sales And Communication</option>
+                                    <option value="Design & Creative">Design & Creative</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    
+                                  </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control border-0" placeholder="Location" name="location" id="formLocation" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Search" class="btn btn-dark border-0 w-100" />
+                    </div>
+                
+                </div>
+            </form>
+            </div>
+      
+        </div>
+    </div>
+
+    <!--search end-->
+
+    <!--explore by category-->
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Marketing/1/">
+                        <i class="fa fa-3x fa-mail-bulk  mb-4"></i>
+                        <h5 class="mb-3">Marketing</h5>
+                        <p class="mb-0">{{counts.Marketing}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Customer Service/1/">
+                        <i class="fa fa-3x fa-headset  mb-4"></i>
+                        <h5 class="mb-3">Customer Service</h5>
+                        <p class="mb-0">{{counts.Customer_Service}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Human Resource/1/">
+                        <i class="fa fa-3x fa-user-tie  mb-4"></i>
+                        <h5 class="mb-3">Human Resource</h5>
+                        <p class="mb-0">{{counts.Human_Resource}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Project Management/1/">
+                        <i class="fa fa-3x fa-tasks mb-4"></i>
+                        <h5 class="mb-3">Project Management</h5>
+                        <p class="mb-0">{{counts.Project_Management}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Business Development/1/">
+                        <i class="fa fa-3x fa-chart-line  mb-4"></i>
+                        <i class="fa-solid fa-chart-mixed"></i>
+                        <h5 class="mb-3">Business Development</h5>
+                        <p class="mb-0">{{counts.Business_Development}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Sales & Communication/1/">
+                        <i class="fa fa-3x fa-hands-helping  mb-4"></i>
+                        <h5 class="mb-3">Sales & Communication</h5>
+                        <p class="mb-0">{{counts.Sales_Communication}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Information Technology/1/">
+                        <i class="fa fa-3x fa-desktop  mb-4"></i>
+                        <h5 class="mb-3">Information Technology</h5>
+                        <p class="mb-0">{{counts.Information_Technology}} Jobs</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <a class="cat-item rounded p-4 shadow" href="jobsearch/category/Design & Creative/1/">
+                        <i class="fa fa-3x fa-drafting-compass  mb-4"></i>
+                        <h5 class="mb-3">Design & Creative</h5>
+                        <p class="mb-0">{{counts.Design_Creative}} Jobs</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end explore by category-->
+    <!--recent posted Jobs-->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 wow fadeIn" data-wow-delay="0.1s">Recent Jobs</h1>
+            <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
+                <!-- start post-->
+                {% if recenetjobs != '' %} 
+                {% for job in recentjobs %}
+                <div class="job-item p-4 mb-4">
+                    <div class="row g-4">
+                        <div class="col-sm-12 col-md-8 d-flex  align-items-center">
+                            <div class="text-start ps-4 ">
+                                <a href="jobview/{{job|private:'_id'}}">
+                                    <h5 class="mb-3">{{job.title}}</h5>
+                                </a>
+                                <span class="text-truncate me-auto"><i
+                                        class="fa fa-map-marker-alt me-2"></i>{{job.location}} </i></span>
+                                <span class="text-truncate me-auto"><i class="far fa-clock  me-2"></i>{{job.type}}</span>
+                                <span class="text-truncate me-4"><i class="far fa-money-bill-alt  me-2"></i>${{job.minSalary}} -
+                                    ${{job.maxSalary}}</span></p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <!-- end post-->
+                
+               
+                <a class="btn py-3 px-5" id="postBtn" href="jobsearch/recent/recent/1/">Browse More Jobs</a>
+                {% else %}
+                <div class="text-start ps-4 align-items-center">
+                   
+                        <h5 class="mb-3 text-center">Sorry, No Jobs Available !!!!!!!!</h5>
+                    
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--end recent posted Jobs -->
+
+
+</body>
+
+</html>

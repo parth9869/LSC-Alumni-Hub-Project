@@ -1,0 +1,81 @@
+body {
+    background-color: #d7d7d7;;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+
+
+}
+
+.navbar {
+    background-color: white;
+
+    margin-left: 5px;
+    transition: .5s;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+
+    font-size: large;
+    vertical-align: middle;
+}
+
+
+.navbar-custom .navbar-brand h2 {
+    color: #e41f20;
+
+}
+
+.navbar-custom .nav-item a {
+    color: black;
+}
+
+.navbar-custom .nav-item .active {
+    color: #e41f20;
+}
+
+.navbar-custom .nav-item a:hover {
+    color: #e41f20;
+}
+
+.navbar-custom .nav-item .btn {
+
+    font-size: large;
+    background-color: #e41f20;
+    color: white;
+    border-color: #e41f20;
+}
+
+.navbar-custom .nav-item .btn:hover {
+    background-color: #3accfc;
+    border-color: #3accfc;
+}
+
+#navToggal {
+    color: #e41f20;
+}
+
+.dropdown a{
+    text-decoration: none;
+}
+
+
+
+#applyJob {
+    color: white;
+    background-color: #e41f20;
+    font-weight: bold;
+}
+
+
+#applyJob:hover {
+
+    background-color: #3accfc;
+}
+
+/*job title section*/
+#faviconIcon {
+    color: #e41f20;
+}
+
+.bg-custom {
+    background-color: #fccccf;
+}

@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LSC Alumni Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{% static 'img/logo1.jpg' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Stylesheet -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/postJob.css' %}" rel="stylesheet">
+
+    <!--jquery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+    </script>
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-custom  shadow sticky-top">
+        <a class="navbar-brand" href="#">
+            <!--logo -->
+            <img src="{% static 'img/logo1.jpg'%}" alt="logo" class="rounded-circle img-fluid" width="70px">
+        </a>
+        <!--respoinsive toggal button for mobile view-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="border-color: #f56e76;">
+            <i class="fa fa-bars fa-lg" id="navToggal"></i>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="navbar-nav container-fluid justify-content-end nav-item ">
+
+                <div class="nav-item"> <span class=" MX-1">Welcome, {{user.firstname}} </spanp></div>
+                    
+                <!--dashboard navebar item-->
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link mx-1 ">Dashboard</a>
+
+                <!--jobs dropdown menu -->
+                <div class="dropdown mx-1 nav-item ">
+                    <a class="dropdown-toggle nav-item " type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Jobs
+                    </a>
+
+                    <!--jobs dropdown menu items-->
+                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item " href="{% url 'jobhome' %}">Search Jobs</a>
+                        <a class="dropdown-item" href="{% url 'postjob' %}">Post a Job</a>
+
+                    </div>
+                </div>
+
+                
+
+                <!--House dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Rental
+                    </a>
+                    <!--House dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Search Rental Home/Room</a>
+                        <a class="dropdown-item" href="#">Rent a Home/Room</a>
+
+                    </div>
+                </div>
+
+                <!--userProfile dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/defaultprofile.jpg' %}" class="rounded-circle img-fluid" width="30px"
+                            alt="profile picture">
+                    </a>
+
+                    <!--userProfile dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+
+        </div>
+    </nav>
+    <!--navebar end-->
+    <!--Post job start-->
+    <div class="container-fluid wow fadeInUp" data-wow-delay="0.1s">
+
+        <div class="container py-5">
+            <div class="row">
+                <form class="p-5" action="{% url 'postjob' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+
+                        <!--personal information -->
+                        <div class="card-body wow slideInUp" data-wow-delay="0.1s">
+                            <h4 class="my-3">Post A Job</h4>
+                            <hr>
+                            <div class="row m-2">
+
+                                <!--job title start-->
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Title</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    {{form.title}}
+                                </div>
+                            </div>
+                            <!--job title end-->
+                            <!--company name start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Company Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.companyname}}
+                                </div>
+                            </div>
+                            <!--Company Name end end-->
+                             <!--job location start-->
+                             <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Location</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.location}}
+                                </div>
+                            </div>
+                            <!--Job location end-->
+                            <!--job category start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Category</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    {{form.category}}
+                                </div>
+                            </div>
+                            <!--Job category end-->
+                            <!--job type start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Type</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    {{form.type}}
+                                </div>
+                            </div>
+                            <!--Job Type end-->
+
+                             <!--Salary range start-->
+                             <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Salary Range</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="mb-0">Min. salary</p>
+                                            {{form.minSalary}}
+                                        </div>
+                                        <div class="col">
+                                            <p class="mb-0">Max. salary</p>
+                                           {{form.maxSalary}}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!--Salary Range end-->
+                            <!--job description start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Description</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.description}}
+                                </div>
+                            </div>
+                            <!--Job description end-->
+
+                            <!--job responsibilities start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job Responsibilites</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.responsibilities}}
+                                </div>
+                            </div>
+                            <!--Job description end-->
+
+                            <!--job responsibilities start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Qulifications</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.qulifications}}
+                                </div>
+                            </div>
+                            <!--Job description end-->
+                            <!--Company Details start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Company Details</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.companydetail}}
+                                </div>
+                            </div>
+                            <!--Job description end-->
+                            <!--job vacancy-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Number of vacancy</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.noOfvacancy}}
+                                </div>
+                            </div>
+                            <!--Job vacancy end-->
+                            <!--job url start-->
+                            <div class="row m-2">
+
+                                
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Job post URL</p>
+                                </div>
+                                <div class="col-sm-9">
+                                   {{form.url}}
+                                </div>
+                            </div>
+                            <!--Job url end-->
+
+                        </div>
+                        </div>
+                        {{form.postby}}
+
+                        <input type="submit" class="form-control btn rounded-3" id="submitBtn"/>
+                       
+                </form>
+                </div>
+                </div>
+    <!--Post job end-->
+</body>
+
+</html>

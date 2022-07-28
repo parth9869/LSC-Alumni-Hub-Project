@@ -1,0 +1,772 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LSC Alumni Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{% static 'img/logo1.jpg'%}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Stylesheet -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/editProfile.css'%}" rel="stylesheet">
+
+    <!--jquery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/editProfile.js' %}">
+    </script>
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-custom  shadow sticky-top">
+        <a class="navbar-brand" href="#">
+            <!--logo -->
+            <img src="{% static 'img/logo1.jpg' %}" alt="logo" class="rounded-circle img-fluid" width="70px">
+        </a>
+        <!--respoinsive toggal button for mobile view-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="border-color: #f56e76;">
+            <i class="fa fa-bars fa-lg" id="navToggal"></i>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="navbar-nav container-fluid justify-content-end nav-item ">
+                <!--dashboard navebar item-->
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link mx-1 ">Dashboard</a>
+
+                <!--jobs dropdown menu -->
+                <div class="dropdown mx-1 nav-item ">
+                    <a class="dropdown-toggle nav-item " type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jobs
+                    </a>
+
+                    <!--jobs dropdown menu items-->
+                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item " href="{% url 'jobhome'%}">Search Jobs</a>
+                        <a class="dropdown-item" href="{% url 'postjob' %}">Post a Job</a>
+
+                    </div>
+                </div>
+
+                
+
+                <!--House dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Rental
+                    </a>
+                    <!--House dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Search Rental Home/Room</a>
+                        <a class="dropdown-item" href="#">Rent a Home/Room</a>
+
+                    </div>
+                </div>
+
+                <!--userProfile dropdown menu -->
+                <div class="dropdown mx-1 ">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/defaultprofile.jpg' %}" class="rounded-circle img-fluid" width="30px"
+                            alt="profile picture">
+                    </a>
+
+                    <!--userProfile dropdown menu items-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+
+
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        </div>
+    </nav>
+    <!--navebar end-->
+    <!--edit profile start-->
+    <div class="container wow fadeInUp" data-wow-delay="0.1s">
+
+        <div class="container ">
+            <div class="row">
+                <form class="" method="post" action="{% url 'editprofile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+
+                        <!--personal information -->
+                        <div class="card-body wow slideInUp" data-wow-delay="0.1s">
+                            <h4 class="my-3">Personal Information</h4>
+                            <hr>
+                            <div class="row m-2">
+
+                                <!--first name start-->
+                                <div class="col-sm-3">
+                                    <p class="mb-0">First Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="firstName" class="form-control rounded-3 " value="{{profile.firstname}}" required/>
+                                </div>
+                            </div>
+                            <!--first name end-->
+
+                            <!--Last name start-->
+                            <div class="row m-2">
+
+
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Last Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="lastName" class="form-control rounded-3 " value="{{profile.lastname}}" required />
+                                </div>
+                            </div>
+                            <!--last name end-->
+                            <!--email start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="email" name="email" class="form-control rounded-3 " value="{{profile.email}}" required/>
+                                </div>
+                            </div>
+                            <!--email end-->
+                            <div class="row m-2">
+                            <div class="col-sm-3">
+                                <p class="mb-0">User Type</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="userType" name="userType" >
+                                    <option value="Student" {% if profile.usertype == 'Student' %} selected{% endif %}>Student</option>
+                                    <option value="Alumni" {% if profile.usertype == 'Alumni' %} selected{% endif %}>Alumni</option>
+                                    <option value="Professor" {% if profile.usertype == 'Professor' %} selected{% endif %}>Professor</option>
+                                   
+                                    
+                                  </select>
+                            </div>
+                            </div>
+                            <!--program name-->
+                            <div class="row m-2" id="programNameDiv">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Program Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="programName" class="form-control rounded-3 " value="{{profile.programname}}" id="programName"/>
+                                </div>
+                            </div>
+                            <!--program name end-->
+                            <!--passing year-->
+                            <div class="row m-2" id="passingYearDiv">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Passing Year</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="number" min="1967" class="form-control" name="passingYear" id="passingYear" value="{% if profile.passingyear %} {{profile.passingyear}} {% else %}1967{% endif %}"/>
+                                </div>
+                            </div>
+                            <!--passing year end-->
+                            
+                            
+                            <!--mobile number start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Mobile</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="tel" name="mobileNumber" class="form-control rounded-3 " value="{{profile.mobile}}" />
+                                </div>
+                            </div>
+                            <!--mobile number end-->
+
+                            <!--city start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">City</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="city" class="form-control rounded-3 " value="{{profile.city}}"/>
+                                </div>
+                            </div>
+                            <!--city ends-->
+                            <!--province start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Province \ State</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="province" class="form-control rounded-3 " value="{{profile.province}}"/>
+                                </div>
+                            </div>
+                            <!--province ends-->
+                            <!--country start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Country</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="country" class="form-control rounded-3 " value="{{profile.country}}"/>
+                                </div>
+                            </div>
+                            <!--country ends-->
+                            
+                            <!--profile picture start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Profile Image</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control"  name="profileImage"/>
+                                </div>
+                            </div>
+                            <!--profile picture end-->
+
+                        </div>
+                        <!--personal information ends-->
+
+
+
+                    </div>
+                    <!--About start-->
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+                        <div class="card-body wow slideInUp " data-wow-delay="0.1s">
+                            <h4 class="my-3">About</h4>
+                            <hr>
+                            <textarea name="about" style="white-space: prewrap;" class="form-control rounded-3 " rows="5">{{profile.about}}</textarea>
+                        </div>
+                    </div>
+                    <!--About end-->
+
+                    <!--Education start-->
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+                        <div class="card-body wow slideInUp " data-wow-delay="0.1s" id="educationCard">
+                            <h4 class="my-3">Education</h4>
+                            <hr>
+                            {% if profile.educations %}
+
+                            {% for education in profile.educations %}
+                            <!--eduction section-->
+                            <div class="row m-2" id="educationSection">
+                                <div class="card mb-4 rounded-3 wow slideInUp " data-wow-delay="0.1s">
+                                    <div class="card-body wow slideInUp " data-wow-delay="0.1s">
+                                        <!--university name -->
+
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">University Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="university[]"
+                                                    class="form-control rounded-3 " value="{{education.university}}" required/>
+                                            </div>
+                                        </div>
+                                        <!--university name end-->
+
+                                        <!--Degree -->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Degree Type</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="degree[]" class="form-control rounded-3 " value="{{education.degree}}" required />
+                                            </div>
+                                        </div>
+                                        <!--Degree end-->
+
+                                        <!--course -->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Program Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="program[]" class="form-control rounded-3 " value="{{education.program}}" required />
+                                            </div>
+                                        </div>
+                                        <!--Course end-->
+                                        <!--date-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-6">
+                                                <p class="mb-0">Start Date</p>
+                                                <div class="row ml-2">
+                                                <input type="date" name="startDate[]" class="form-control rounded-3 "
+                                                    {% if education.startdate %} value="{{education.startdate}}" {% endif %} required/></div>
+
+                                            </div>
+                                            <div class="col-sm-6" id="ffr">
+                                                {% if education.enddate != '' %}
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="mb-0">End Date</p>
+                                                        <div class="row ml-2">
+                                                           
+                                                        <input type="date" name="endDate[]"
+                                                            class="form-control rounded-3 " value="{{education.enddate}}" id="endMonth" />
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col ml-3">
+                                                        <input class="form-check-input "  type="checkbox" value=""
+                                                            id="educationCheckBox" name="educationCheckBox" />
+                                                        <label class="form-check-label" for="flexCheckChecked">Currently
+                                                            attending this university</label>
+                                                    </div>
+                                                </div>
+                                                {% else %}
+                                                
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="mb-0">End Date</p>
+                                                        <div class="row ml-2">
+                                                           
+                                                        <input type="text" name="endDate[]"
+                                                            class="form-control rounded-3 " value="Present" id="endMonth" />
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col ml-3">
+                                                        <input class="form-check-input "  type="checkbox" value=""
+                                                            id="educationCheckBox" name="educationCheckBox" checked />
+                                                        <label class="form-check-label" for="flexCheckChecked">Currently
+                                                            attending this university</label>
+                                                    </div>
+                                                </div>
+
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!--date end-->
+                                        <!--description-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Description</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea name="educationDescription[]" style="white-space: prewrap;" class="form-control rounded-3 "
+                                                    rows="5">{{education.description}}</textarea>
+                                            </div>
+                                        </div>
+                                        <!--description end-->
+                                        <div class="row m-1">
+                                            <div class="col text-center">
+                                                <a class="btn bg-secondary text-white" id="deleteEducation"><i
+                                                        class="fa fa-trash-alt m-2"></i>delete</a>
+                                            </div>
+
+                                        </div>
+                                        <!--eduction section end-->
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            {% endfor %}
+                                {% endif %}
+                            <!--add education button-->
+                            <div class="row m-1" id="dfdf">
+                                <div class="col text-end">
+                                    <a class="btn" id="addEduction"><i class="fa fa-plus"></i>Add</a>
+                                </div>
+                                <!--add education button end-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Education end-->
+
+                    <!--Work experience start-->
+                     
+                     <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+                        <div class="card-body wow slideInUp " data-wow-delay="0.1s" id="workCard">
+                            <h4 class="my-3">Work Experience</h4>
+                            <hr>
+                            {% if profile.workexperiences %}
+
+                            {% for workexe in profile.workexperiences %}
+                            <!--work experience section-->
+                            <div class="row m-2" id="workSection">
+                                <div class="card mb-4 rounded-3 wow slideInUp " data-wow-delay="0.1s">
+                                    <div class="card-body wow slideInUp " data-wow-delay="0.1s">
+                                        <!--Position name -->
+
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Position </p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="position[]"
+                                                    class="form-control rounded-3 " value="{{workexe.position}}" required/>
+                                            </div>
+                                        </div>
+                                        <!--position  end-->
+
+                                        <!--Company name -->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Company Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="company[]" class="form-control rounded-3 " value="{{workexe.company}}" required/>
+                                            </div>
+                                        </div>
+                                        <!--Company end-->
+
+                                    
+                                        <!--date-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-6">
+                                                <p class="mb-0">Start Date</p>
+                                                <div class="row ml-2">
+                                                <input type="date" name="startDateWork[]" class="form-control rounded-3 "
+                                                {% if workexe.startdate %} value="{{workexe.startdate}}" {% endif %} required /></div>
+
+                                            </div>
+                                           
+                                            <div class="col-sm-6" id="ffr">
+                                                {% if education.enddate %}
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="mb-0">End Date</p>
+                                                        <div class="row ml-2">
+                                                        <input type="date" name="endDateWork[]"
+                                                            class="form-control rounded-3 " value="{{workexe.enddate}}" id="endMonthWork" />
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col ml-3">
+                                                        <input class="form-check-input "  type="checkbox" value=""
+                                                            id="workCheckBox" name="workCheckBox" />
+                                                        <label class="form-check-label" for="flexCheckChecked">Currently
+                                                            work here</label>
+                                                    </div>
+                                                </div>
+                                                {% else %}
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="mb-0">End Date</p>
+                                                        <div class="row ml-2">
+                                                        <input type="text" name="endDateWork[]"
+                                                            class="form-control rounded-3 " value="Present" id="endMonthWork" />
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col ml-3">
+                                                        <input class="form-check-input "  type="checkbox" value=""
+                                                            id="workCheckBox" name="workCheckBox" checked/>
+                                                        <label class="form-check-label" for="flexCheckChecked">Currently
+                                                            work here</label>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                
+                                            </div>
+                                        </div>
+                                        <!--date end-->
+                                        <!--description-->
+                                        <div class="row m-2"> 
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Description</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea name="workDescription[]" style="white-space: break-space;" class="form-control rounded-3 "
+                                                    rows="5">{{workexe.description}}</textarea>
+                                            </div>
+                                        </div>
+                                        <!--description end-->
+                                        <div class="row m-1">
+                                            <div class="col text-center">
+                                                <a class="btn bg-secondary text-white" id="deleteWork"><i
+                                                        class="fa fa-trash-alt m-2"></i>delete</a>
+                                            </div>
+
+                                        </div>
+                                        <!--eduction section end-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <!--add work button-->
+                            <div class="row m-1" >
+                                <div class="col text-end">
+                                    <a class="btn" id="addWork"><i class="fa fa-plus"></i>Add</a>
+                                </div>
+                                <!--add work button end-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--work experience ends-->
+                    <!--publications start-->
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+                        <div class="card-body wow slideInUp " data-wow-delay="0.1s" id="publicationCard">
+                            <h4 class="my-3">Publications</h4>
+                            <hr>
+                            {% if profile.publications %}
+                            {% for pub in profile.publications %}
+                            <!--work experience section-->
+                            <div class="row m-2" id="publicationSection">
+                                <div class="card mb-4 rounded-3 wow slideInUp " data-wow-delay="0.1s">
+                                    <div class="card-body wow slideInUp " data-wow-delay="0.1s">
+                                        <!--title -->
+
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Publication Title</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="publicationTitle[]"
+                                                    class="form-control rounded-3 " value="{{pub.title}}" required/>
+                                            </div>
+                                        </div>
+                                        <!--title  end-->
+
+                                        <!--journal name -->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Journal Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="publicationJournal[]" class="form-control rounded-3 " value="{{pub.journal}}" required/>
+                                            </div>
+                                        </div>
+                                        <!--journal end-->
+
+                                    
+                                        <!--publication date-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Date of Publication</p>
+                                              </div>
+                                              <div class="col-sm-9" > 
+                                                  
+                                                <input type="date" name="publicationDate[]" class="form-control rounded-3 "
+                                                    value="{{pub.date}}" />
+                                                 </div>
+                                        
+                                        </div>
+                                        <!--publication date end-->
+                                        <!--publication link-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Publication URL</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="url" name="publicationUrl[]" class="form-control rounded-3 "
+                                                    value="{{pub.url}}" />
+                                            </div>
+                                        </div>
+                                        <!--publication link end-->
+                                        <div class="row m-1">
+                                            <div class="col text-center">
+                                                <a class="btn bg-secondary text-white" id="deletePublication"><i
+                                                        class="fa fa-trash-alt m-2"></i>delete</a>
+                                            </div>
+
+                                        </div>
+                                        <!--eduction section end-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %} 
+                            {% endif %} 
+                            <!--publicationsection end-->
+                            <!--add work button-->
+                            <div class="row m-1" >
+                                <div class="col text-end">
+                                    <a class="btn" id="addPublication"><i class="fa fa-plus"></i>Add</a>
+                                </div>
+                                <!--add publication button end-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--publication end-->
+                     <!--Certification start-->
+                     <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+                        <div class="card-body wow slideInUp " data-wow-delay="0.1s" id="certificationCard">
+                            <h4 class="my-3">Certifications</h4>
+                            <hr>
+                            {% if profile.certifications  %}
+                            {% for cert in profile.certifications %} 
+                            <!--certification section-->
+                            <div class="row m-2" id="certificationSection">
+                                <div class="card mb-4 rounded-3 wow slideInUp " data-wow-delay="0.1s">
+                                    <div class="card-body wow slideInUp " data-wow-delay="0.1s">
+                                        <!--title -->
+
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0"> Certificate Title</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="certificateTitle[]"
+                                                    class="form-control rounded-3 " value="{{cert.title}}" required />
+                                            </div>
+                                        </div>
+                                        <!--title  end-->
+
+                                        <!--Institite name -->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Institute Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="certificateInstitute[]" class="form-control rounded-3 " value="{{cert.institute}}" required />
+                                            </div>
+                                        </div>
+                                        <!--institute end-->
+
+                                    
+                                        <!--certification date-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Issue date</p>
+                                              </div>
+                                              <div class="col-sm-9" > 
+                                                <input type="date" name="certificateDate[]" class="form-control rounded-3 "
+                                                    value="{{cert.date}}" />
+                                                 </div>
+                                        
+                                        </div>
+                                        <!--certification date end-->
+                                        <!--certification link-->
+                                        <div class="row m-2">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Credential URL</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="url" name="certificateUrl[]" class="form-control rounded-3 "
+                                                   value="{{cert.url}}"  />
+                                            </div>
+                                        </div>
+                                        <!--certification link end-->
+                                        <div class="row m-1">
+                                            <div class="col text-center">
+                                                <a class="btn bg-secondary text-white" id="deleteCertificate"><i
+                                                        class="fa fa-trash-alt m-2"></i>delete</a>
+                                            </div>
+
+                                        </div>
+                                        <!--eduction section end-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %} 
+                            {% endif %}
+                            <!--publicationsection end-->
+                            <!--add work button-->
+                            <div class="row m-1" >
+                                <div class="col text-end">
+                                    <a class="btn" id="addCertificate"><i class="fa fa-plus"></i>Add</a>
+                                </div>
+                                <!--add certificatebutton end-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--certification end-->
+                    <!--Social Links start-->
+                    <div class="card mb-4 rounded-3 wow slideInUp shadow" data-wow-delay="0.1s">
+
+                        <!--personal information -->
+                        <div class="card-body wow slideInUp" data-wow-delay="0.1s">
+                            <h4 class="my-3">Social links</h4>
+                            <hr>
+                            <div class="row m-2">
+
+                                <!--personalWebsite start-->
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Personal Website</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="url" name="personalWebsite" class="form-control rounded-3 " value="{{profile.personalwebsite}}"/>
+                                </div>
+                            </div>
+                            <!--personalwebsite end-->
+
+                            <!--github start-->
+                            <div class="row m-2">
+
+
+                                <div class="col-sm-3">
+                                    <p class="mb-0">GitHub</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="url" name="github" class="form-control rounded-3 " value="{{profile.github}}" />
+                                </div>
+                            </div>
+                            <!--github end-->
+                            <!--linkedin start-->
+                            <div class="row m-2">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">LinkedIn</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="url" name="linkedin" class="form-control rounded-3 " value="{{profile.linkedin}}"/>
+                                </div>
+                            </div>
+                            <!--linkedin end-->
+                           
+                            
+                        </div>
+                        
+
+
+
+                    </div>
+                     <!--Social Links end-->
+                     <div class="row m-2">
+                         <div class="col text-center ">
+                            <input type="submit" class="form-control btn rounded-3" id="submitBtn"/>
+                         </div>
+                     </div>
+                    
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--eidt profile end-->
+</body>
+
+</html>

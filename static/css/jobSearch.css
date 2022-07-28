@@ -1,0 +1,123 @@
+body{
+    background-color: #d7d7d7;;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+   
+}
+
+.navbar{
+    background-color: white;
+   
+    margin-left: 5px;
+    transition: .5s;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+   
+    font-size: large;
+    vertical-align: middle;
+}
+    
+
+.navbar-custom .navbar-brand h2{
+    color:#e41f20;
+   
+}
+.navbar-custom .nav-item a{
+    color: black;
+}
+.navbar-custom .nav-item .active{
+    color:#e41f20;
+}
+.navbar-custom .nav-item a:hover{
+    color:#e41f20;
+}
+.navbar-custom .nav-item .btn{
+  
+    font-size: large;
+    background-color:#e41f20;
+    color:white;
+    border-color: #e41f20;
+}
+.navbar-custom .nav-item .btn:hover{
+    background-color:#3accfc ;
+    border-color: #3accfc;
+}
+#navToggal{
+    color:#e41f20;
+}
+.dropdown a{
+    text-decoration: none;
+}
+
+
+
+
+#search{
+
+background-color: #e41f20;
+margin-top: 10px;
+margin-left: 5px;
+margin-right: 10px;
+margin-bottom: 10px;
+}
+
+/*Search by category*/
+.cat-item {
+   background-color:  #fafafa;
+    display: block;
+    color:#e41f20;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    border: 1px solid transparent;
+    transition: .5s;
+    margin: 5px;
+}
+.cat-item:hover{
+    text-decoration: none;
+    color:#3accfc 
+    
+}
+
+.cat-item h5{
+    color:black;
+    font-weight: bold;
+    font-size: medium;
+}
+.cat-item:hover {
+    border-color: rgba(0, 0, 0, .08);
+    box-shadow: none;
+}
+
+/*job items*/
+
+.job-item{
+    background-color:  #fafafa;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+    
+}
+.job-item i{color:#e41f20;}
+
+.job-item:hover {
+    border-color: rgba(0, 0, 0, .08);
+    box-shadow: none;
+}
+
+#postBtn{
+    background-color: #e41f20;
+    color:#fafafa;
+    font-weight: bold;
+}
+#postBtn:hover{
+    background-color: #3accfc ;
+    
+}
+
+.page-item a{
+    color:black;
+}
+.page-item  .active{
+    background-color: #e41f20;
+    color: #fafafa;
+}
