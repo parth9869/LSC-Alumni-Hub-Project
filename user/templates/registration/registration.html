@@ -68,9 +68,11 @@
               <label class="form-label" for="form3Example3cg">Email</label>
               {{form.email}}
               <!--error in email -->
+              
               {% if form.errors.email is not None %}
               <p style="color:red ">
-                Email is already used.
+              {{form.errors.email}}
+
               </p>
               {% endif %}
               <!--end email error-->
@@ -82,7 +84,7 @@
               <!--username error-->
               {% if form.errors.username is not None %}
               <p style="color:red ">
-                Username is already used.
+                {{form.errors.username}}
               </p>
               {% endif %}
               <!--end username error-->
