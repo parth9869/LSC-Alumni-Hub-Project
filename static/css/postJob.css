@@ -63,3 +63,7 @@ body{
 .customPosttext{
     white-space: prewrap;
 }
+
+.errorlist{
+    color: red;
+}

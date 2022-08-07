@@ -143,7 +143,17 @@
                                 </div>
                                 <div class="col-sm-9">
                                     {{form.title}}
+                                   
+                                {% if form.errors.title%} 
+                               
+                                <p>
+                                    {{form.errors.title}}
+                                </p>
+                                {% endif %}
+                                
+                                
                                 </div>
+                                
                             </div>
                             <!--job title end-->
                             <!--company name start-->
@@ -155,6 +165,14 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.companyname}}
+                                      
+                                {% if form.companyname.errors%} 
+                               
+                                <p>
+                                    {{form.companyname.errors}}
+                                </p>
+                                {% endif %}
+                                
                                 </div>
                             </div>
                             <!--Company Name end end-->
@@ -167,6 +185,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.location}}
+                                   {% if form.location.errors %} 
+                               
+                                   <p>
+                                       {{form.location.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job location end-->
@@ -179,6 +203,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                     {{form.category}}
+                                    {% if form.category.errors %} 
+                               
+                                    <p>
+                                        {{form.category.errors }}
+                                    </p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!--Job category end-->
@@ -191,6 +221,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                     {{form.type}}
+                                    {% if form.type.errors %} 
+                               
+                                    <p>
+                                        {{form.type.errors }}
+                                    </p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!--Job Type end-->
@@ -207,10 +243,22 @@
                                         <div class="col">
                                             <p class="mb-0">Min. salary</p>
                                             {{form.minSalary}}
+                                            {% if form.minSalary.errors %} 
+                               
+                                            <p>
+                                                {{form.minSalary.errors}}
+                                            </p>
+                                            {% endif %}
                                         </div>
                                         <div class="col">
                                             <p class="mb-0">Max. salary</p>
                                            {{form.maxSalary}}
+                                           {% if form.maxSalary.errors%} 
+                               
+                                           <p>
+                                               {{form.maxSalary.errors}}
+                                           </p>
+                                           {% endif %}
                                         </div>
                                     </div>
                                     
@@ -226,6 +274,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.description}}
+                                   {% if form.description.errors %} 
+                               
+                                   <p>
+                                       {{form.description.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job description end-->
@@ -239,6 +293,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.responsibilities}}
+                                   {% if form.responsibilities.errors %} 
+                               
+                                   <p>
+                                       {{form.responsibilities.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job description end-->
@@ -252,6 +312,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.qulifications}}
+                                   {% if form.qulifications.errors %} 
+                               
+                                   <p>
+                                       {{form.qulifications.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job description end-->
@@ -264,6 +330,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.companydetail}}
+                                   {% if form.companydetail.errors %} 
+                               
+                                   <p>
+                                       {{form.companydetail.errors }}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job description end-->
@@ -276,6 +348,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.noOfvacancy}}
+                                   {% if form.noOfvacancy.errors %} 
+                               
+                                   <p>
+                                       {{form.noOfvacancy.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job vacancy end-->
@@ -288,6 +366,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                    {{form.url}}
+                                   {% if form.url.errors%} 
+                               
+                                   <p>
+                                       {{form.url.errors}}
+                                   </p>
+                                   {% endif %}
                                 </div>
                             </div>
                             <!--Job url end-->
