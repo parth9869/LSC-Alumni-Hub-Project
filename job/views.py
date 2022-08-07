@@ -90,7 +90,7 @@ def jobpost(request):
         
         if form.is_valid():
             form.save()
-            return redirect("jobs/")
+            return redirect("../")
         else:
             
             return render(request,'postjob.html',{'form':form})
