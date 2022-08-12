@@ -120,11 +120,13 @@
 
     <!-- search start-->
     
+    
     <div class="container align-items-center">
+   
         <div class="container-fluid  wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;" id="search">
-            
             <div class="container">
-                <form method="GET" action="{% url 'job_searchbtn' %}" name="searchform" onsubmit="return formValidation()"></form>
+                <form method="GET" action="{% url 'job_searchbtn' %}" name="searchform" onsubmit="return formValidation()">
+    
                 <div class="row g-2">
                    
                     <div class="col-md-10">
@@ -160,10 +162,10 @@
                 </div>
             </form>
             </div>
-      
         </div>
-    </div>
+    
 
+</div>
     <!--search end-->
 
     <!--explore by category-->

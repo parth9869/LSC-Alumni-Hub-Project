@@ -75,11 +75,15 @@ def jobsearch(request,btn,val,pagenumber):
         else:
              return render(request,'jobsearch.html',{"jobs":'',"btn":btn,"val":val})
 
+
 @login_required(login_url='/')
 def jobview(request,id):
     resultset=jobs.objects.get(_id=id)
     jobposterdetails=CustomUser.objects.get(_id=resultset.postby)
     return render(request,'jobview.html',{'job':resultset,'jobposterdetails':jobposterdetails})
+
+
+
 
 @login_required(login_url='/')
 def jobpost(request):
